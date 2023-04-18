@@ -2,3 +2,27 @@ html,body {
      margin: 0;
      height: 100%;
 }
+
+#my-page-head {
+     padding-top: 50px;
+     display: flex;
+     justify-content: space-between;
+}
+
+.profile-image {
+     background-color: aqua;
+     margin-left: 50px;
+     width: 200px;
+     height: 200px;
+}
+
+.profile-content {
+     background-color: aquamarine;
+     
+     width: 450px;
+     height: 200px;
+}
+
+a {
+     display: block;
+}
