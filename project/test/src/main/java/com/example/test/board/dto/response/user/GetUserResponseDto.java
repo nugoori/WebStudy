@@ -13,16 +13,13 @@ public class GetUserResponseDto {
     
     private String email;
     private String nickname;
-    //? 이름 맞추기?
-    private String profileImageUrl;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
     private String gender;
 
     public GetUserResponseDto(UserEntity userEntity) {
         this.email = userEntity.getEmail();
         this.nickname = userEntity.getNickname();
-        this.profileImageUrl = userEntity.getProfileImageUrl();
         this.height = userEntity.getHeight();
         this.weight = userEntity.getWeight();
         this.gender = userEntity.getGender();

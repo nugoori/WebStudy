@@ -13,15 +13,13 @@ public class SignInResponseDto {
     
     private String email;
     private String nickname;
-    private String profileImgUrl;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
     private String gender;
 
     public SignInResponseDto(UserEntity userEntity, String token) {
         this.email = userEntity.getEmail();
         this.nickname = userEntity.getNickname();
-        this.profileImgUrl = userEntity.getProfileImageUrl();
         this.height = userEntity.getHeight();
         this.weight = userEntity.getWeight();
         this.gender = userEntity.getGender();

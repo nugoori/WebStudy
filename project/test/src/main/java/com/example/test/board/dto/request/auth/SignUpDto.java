@@ -25,13 +25,14 @@ public class SignUpDto {
     @NotBlank
     @Length(max=45)
     private String nickname;
-    
-    private String profileImgUrl;
-    
-    private int height;
-    
-    private int weight;
-    
+    @NotBlank
+    @Length(max=45)
+    private String height;
+    @NotBlank
+    @Length(max=45)
+    private String weight;
+    @NotBlank
+    @Length(max=45)
     private String gender;
 
 }

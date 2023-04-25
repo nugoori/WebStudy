@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import com.example.test.board.common.ApiPattern;
 import com.example.test.board.dto.request.auth.SignInDto;
 import com.example.test.board.dto.request.auth.SignUpDto;
 import com.example.test.board.dto.response.ResponseDto;
@@ -14,7 +16,8 @@ import com.example.test.board.dto.response.auth.SignInResponseDto;
 import com.example.test.board.dto.response.auth.SignUpResponseDto;
 import com.example.test.board.service.AuthService;
 
-@RequestMapping
+@RestController
+@RequestMapping(ApiPattern.AUTH)
 public class AuthController {
     
     private final String SIGN_IN = "/sign-in";

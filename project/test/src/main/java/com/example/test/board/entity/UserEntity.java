@@ -20,10 +20,8 @@ public class UserEntity {
     private String email;
     private String password;
     private String nickname;
-    //? 이름 맞추기?
-    private String profileImageUrl;
-    private int height;
-    private int weight;
+    private String height;
+    private String weight;
     private String gender;
 
     public UserEntity(SignUpDto signUpDto) {
@@ -33,6 +31,5 @@ public class UserEntity {
         this.height = signUpDto.getHeight();
         this.weight = signUpDto.getWeight();
         this.gender = signUpDto.getGender();
-        this.profileImageUrl = signUpDto.getProfileImgUrl();
     }
 }
