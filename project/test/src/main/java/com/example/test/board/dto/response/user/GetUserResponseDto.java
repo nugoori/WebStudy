@@ -1,4 +1,4 @@
-package com.example.test.board.dto.response.auth;
+package com.example.test.board.dto.response.user;
 
 import com.example.test.board.entity.UserEntity;
 
@@ -9,19 +9,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class SignInResponseDto {
+public class GetUserResponseDto {
     
     private String email;
     private String nickname;
-    private String profileImgUrl;
+    //? 이름 맞추기?
+    private String profileImageUrl;
     private int height;
     private int weight;
     private String gender;
 
-    public SignInResponseDto(UserEntity userEntity, String token) {
+    public GetUserResponseDto(UserEntity userEntity) {
         this.email = userEntity.getEmail();
         this.nickname = userEntity.getNickname();
-        this.profileImgUrl = userEntity.getProfileImageUrl();
+        this.profileImageUrl = userEntity.getProfileImageUrl();
         this.height = userEntity.getHeight();
         this.weight = userEntity.getWeight();
         this.gender = userEntity.getGender();
