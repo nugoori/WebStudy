@@ -81,7 +81,7 @@ public class BoardServiceImplementation implements BoardService {
             BoardEntity boardEntity = boardRepository.findByBoardNumber(boardNumber);
             if (boardEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_BOARD);
 
-            LikyEntity likyEntity = likyRepository.findByEmailAndBoardNubmer(email, boardNumber);
+            LikyEntity likyEntity = likyRepository.findByEmailAndBoardNumber(email, boardNumber);
             //? LikyEntiy 바꿔야 할 듯?
             if (likyEntity == null) {
                 likyEntity = new LikyEntity(userEntity, boardNumber);
