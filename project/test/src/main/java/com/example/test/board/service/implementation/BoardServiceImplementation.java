@@ -16,7 +16,6 @@ import com.example.test.board.entity.BoardEntity;
 import com.example.test.board.entity.CommentEntity;
 import com.example.test.board.entity.LikyEntity;
 import com.example.test.board.entity.UserEntity;
-import com.example.test.board.entity.primaryKey.LikyPk;
 import com.example.test.board.repository.BoardRepository;
 import com.example.test.board.repository.CommentRepository;
 import com.example.test.board.repository.LikyRepository;
@@ -46,13 +45,12 @@ public class BoardServiceImplementation implements BoardService {
             if (boardEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_BOARD);
 
             CommentEntity commentEntity = new CommentEntity(userEntity, dto);
-            boardRepository.save(boardEntity);
+            commentRepository.save(commentEntity);
 
             boardEntity.increaseCommentCount();
             boardRepository.save(boardEntity);
 
             List<CommentEntity> commentList = commentRepository.findByBoardNumber(boardNumber);
-            //? likyPk에서 boardNubmer 어캐 가져옴?
             List<LikyEntity> likeList = likyRepository.findByBoardNumber(boardNumber);
 
             data = new PostCommentResponseDto(boardEntity, likeList, commentList);
@@ -61,10 +59,7 @@ public class BoardServiceImplementation implements BoardService {
             exception.printStackTrace();
             return ResponseDto.setFail(ResponseMessage.DATABASE_ERROR);
         }
-
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
-
-    
     }
 
     @Override
@@ -82,10 +77,8 @@ public class BoardServiceImplementation implements BoardService {
             if (boardEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_BOARD);
 
             LikyEntity likyEntity = likyRepository.findByEmailAndBoardNumber(email, boardNumber);
-            //? LikyEntiy 바꿔야 할 듯?
             if (likyEntity == null) {
                 likyEntity = new LikyEntity(userEntity, boardNumber);
-
                 likyRepository.save(likyEntity);
                 boardEntity.increaseLikeCount();
             } else {
@@ -95,9 +88,8 @@ public class BoardServiceImplementation implements BoardService {
             boardRepository.save(boardEntity);
 
             List<CommentEntity> commentList = commentRepository.findByBoardNumber(boardNumber);
-
             List<LikyEntity> likeList = likyRepository.findByBoardNumber(boardNumber);
-            //? 순서 조심.....
+
             data = new LikeResponseDto(boardEntity, likeList, commentList);
 
         } 
@@ -105,10 +97,7 @@ public class BoardServiceImplementation implements BoardService {
             exception.printStackTrace();
             return ResponseDto.setFail(ResponseMessage.DATABASE_ERROR);
         }
-
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
-
-
     }
 
     @Override
@@ -136,4 +125,9 @@ public class BoardServiceImplementation implements BoardService {
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
+
+
+
+
+    
 }
