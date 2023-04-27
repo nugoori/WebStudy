@@ -19,7 +19,7 @@ import com.example.test.board.service.AuthService;
 @RestController
 @RequestMapping(ApiPattern.AUTH)
 public class AuthController {
-    
+     
     private final String SIGN_IN = "/sign-in";
     private final String SIGN_UP = "/sign-up";
 

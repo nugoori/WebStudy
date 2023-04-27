@@ -7,6 +7,7 @@ import com.example.test.board.dto.response.board.DeleteBoardResponseDto;
 import com.example.test.board.dto.response.board.LikeResponseDto;
 import com.example.test.board.dto.response.board.PostCommentResponseDto;
 
+
 public interface BoardService {
     
     public ResponseDto<PostCommentResponseDto> postComment(String email, PostCommentDto dto);

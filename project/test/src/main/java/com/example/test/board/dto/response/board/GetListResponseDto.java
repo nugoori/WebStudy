@@ -36,7 +36,7 @@ public class GetListResponseDto {
     private String productPurchaseUrl;
 
     public GetListResponseDto(BoardEntity boardEntity) {
-        this.boardNumber = boardEntity.getBoardNubmer();
+        this.boardNumber = boardEntity.getBoardNumber();
         this.boardContent = boardEntity.getBoardContent();
         this.boardImgUrl1 = boardEntity.getBoardImgUrl1();
         this.boardImgUrl2 = boardEntity.getBoardImgUrl2();

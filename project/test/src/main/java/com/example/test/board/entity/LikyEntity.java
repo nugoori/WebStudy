@@ -1,10 +1,11 @@
 package com.example.test.board.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
-
-import com.example.test.board.entity.primaryKey.LikyPk;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,12 +15,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity(name="Liky")
 @Table(name="Liky")
-public class LikyEntity {
-
+@IdClass(LikyEntity.class)
+public class LikyEntity implements Serializable{
     @Id
-    private LikyPk likyPK;
-
+    private int boardNumber;
+    @Id
+    private String email;
     private String userNickname;
     private String userProfileImageUrl;
     
+
+    public LikyEntity(UserEntity userEntity, int boardNumber) {
+        this.email = userEntity.getEmail();
+        this.boardNumber = boardNumber;
+        this.userNickname = userEntity.getNickname();
+        
+    }
 }
