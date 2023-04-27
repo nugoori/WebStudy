@@ -1,8 +1,10 @@
 package com.example.test.board.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,8 +30,8 @@ public class FileController {
         return response;
     }
 
-    @GetMapping(GET_FILE)
-    public Resource getFile(String fileName) {
+    @GetMapping(value=GET_FILE, produces=(MediaType.ALL_VALUE))
+    public Resource getFile(@PathVariable("fileName") String fileName) {
         Resource response = fileService.getFile(fileName);
         return response;
     }
