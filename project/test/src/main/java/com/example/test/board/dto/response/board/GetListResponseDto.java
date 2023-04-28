@@ -54,8 +54,8 @@ public class GetListResponseDto {
         this.productNumber = productEntity.getProductNumber();
         this.productName = productEntity.getProductName();
         this.productPrice = productEntity.getProductPrice();
-        this.productPurchaseUrl = productEntity.getProductPurchaseUrl();
-        this.productImgUrl = productEntity.getProductImageUrl();
+        this.productPurchaseUrl = productEntity.getProductUrl();
+        this.productImgUrl = productEntity.getProductImgUrl();
     }
 
     public static List<GetListResponseDto> copyList(List<BoardEntity> boardEntityList) {

@@ -8,4 +8,5 @@ import com.example.test.board.entity.ProductEntity;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
     
+    public ProductEntity findByProductNumber(int productNumber);
 }

@@ -15,6 +15,6 @@ public class PostProductDto {
     private int productNumber;
     private String productName;
     private String productPrice;
-    private String productPerchaseUrl;
+    private String productUrl;
     private String productImgUrl;
 }

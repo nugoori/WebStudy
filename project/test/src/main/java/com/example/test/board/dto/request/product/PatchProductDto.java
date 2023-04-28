@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PatchProduct {
+public class PatchProductDto {
     
     @NotBlank
     @Min(1)
@@ -21,6 +21,6 @@ public class PatchProduct {
     private int productNumber;
     private String productName;
     private String productPrice;
-    private String productPerchaseUrl;
+    private String productUrl;
     private String productImgUrl;
 }

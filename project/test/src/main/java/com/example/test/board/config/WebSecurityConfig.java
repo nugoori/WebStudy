@@ -24,7 +24,7 @@ public class WebSecurityConfig {
             .csrf().disable()
             .httpBasic().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests().antMatchers("/", "/auth/**", "/file/**", "/api/board/**").permitAll()
+            .authorizeRequests().antMatchers("/", "/auth/**", "/file/**", "/api/board/**", "/product/**").permitAll()
             .anyRequest().authenticated();
 
             httpSecurity.addFilterBefore(authenticationFilter , UsernamePasswordAuthenticationFilter.class);
