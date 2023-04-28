@@ -3,6 +3,7 @@ package com.example.test.board.controller;
 import javax.validation.constraints.Email;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Required;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,15 +26,15 @@ public class ProductController {
 
     @Autowired ProductService productService;
 
-    private final String DELETE_PRODUCT = "/{boardNumber}/{product-number}";
-    private final String PATCH_PRODUCT = "/{boardNumber}/{product-number}";
+    private final String DELETE_PRODUCT = "/{boardNumber}/{productNumber}";
+    private final String PATCH_PRODUCT = "/{boardNumber}/{productNumber}";
 
     @PatchMapping(PATCH_PRODUCT)
     private ResponseDto<PatchProductResponseDto> patchProduct(
         @AuthenticationPrincipal String email,
         @PathVariable("boardNumber") int boardNumber,
         @PathVariable("productNumber") int productNumber,
-        @PathVariable("dto") PatchProductDto dto
+        @PathVariable(required=false) PatchProductDto dto
     ) {
         ResponseDto<PatchProductResponseDto> response = productService.patchProductResponseDto(email, boardNumber, productNumber, dto);
         return response;
