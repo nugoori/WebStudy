@@ -1,10 +1,6 @@
 package com.example.test.board.controller;
 
-import javax.validation.constraints.Email;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Required;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -27,16 +23,16 @@ public class ProductController {
     @Autowired ProductService productService;
 
     private final String DELETE_PRODUCT = "/{boardNumber}/{productNumber}";
-    private final String PATCH_PRODUCT = "/{boardNumber}/{productNumber}";
+    private final String PATCH_PRODUCT = "/patch-product";
 
     @PatchMapping(PATCH_PRODUCT)
     private ResponseDto<PatchProductResponseDto> patchProduct(
         @AuthenticationPrincipal String email,
-        @PathVariable("boardNumber") int boardNumber,
-        @PathVariable("productNumber") int productNumber,
-        @PathVariable(required=false) PatchProductDto dto
+        // @PathVariable("boardNumber") int boardNumber,
+        // @PathVariable("productNumber") int productNumber,
+        @PathVariable PatchProductDto dto
     ) {
-        ResponseDto<PatchProductResponseDto> response = productService.patchProductResponseDto(email, boardNumber, productNumber, dto);
+        ResponseDto<PatchProductResponseDto> response = productService.patchProduct(email, dto);
         return response;
     }
     
@@ -46,7 +42,7 @@ public class ProductController {
         @PathVariable("boardNumber") int boardNumber,
         @PathVariable("productNumber") int productNumber
     ) { 
-        ResponseDto<DeleteProductResponseDto> response = productService.deleteProductResponseDto(email, boardNumber, productNumber);
+        ResponseDto<DeleteProductResponseDto> response = productService.deleteProduct(email, boardNumber, productNumber);
         return response;
     }
 }

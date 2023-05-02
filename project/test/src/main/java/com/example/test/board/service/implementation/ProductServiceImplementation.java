@@ -23,9 +23,12 @@ public class ProductServiceImplementation implements ProductService {
     @Autowired private BoardRepository boardRepository;
     @Autowired private ProductRepository productRepository;
 
-    public ResponseDto<PatchProductResponseDto> patchProductResponseDto(String email,  int boardNumber, int productNumber, PatchProductDto dto) {
+    public ResponseDto<PatchProductResponseDto> patchProduct(String email, PatchProductDto dto) {
         
         PatchProductResponseDto data = null;
+
+        int boardNumber = dto.getBoardNumber();
+        int productNumber = dto.getProductNumber();
 
         try {
             UserEntity userEntity = userRepository.findByEmail(email);
@@ -37,7 +40,6 @@ public class ProductServiceImplementation implements ProductService {
             ProductEntity productEntity = productRepository.findByProductNumber(productNumber);
             if (productEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_PRODUCT);
 
-            //? 
             productEntity.patch(dto);
             productRepository.save(productEntity);
 
@@ -50,7 +52,7 @@ public class ProductServiceImplementation implements ProductService {
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
-public ResponseDto<DeleteProductResponseDto> deleteProductResponseDto(String email, int boardNumber, int productNumber) {
+public ResponseDto<DeleteProductResponseDto> deleteProduct(String email, int boardNumber, int productNumber) {
 
     DeleteProductResponseDto data = null;
 
@@ -59,6 +61,7 @@ public ResponseDto<DeleteProductResponseDto> deleteProductResponseDto(String ema
         if (boardEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_BOARD);
 
         ProductEntity productEntity = productRepository.findByProductNumber(productNumber);
+        if (productEntity == null) return ResponseDto.setFail(ResponseMessage.NOT_EXIST_PRODUCT);
 
         boolean isEqualWriter = email.equals(boardEntity.getWriterEmail());
         if (!isEqualWriter) return ResponseDto.setFail(ResponseMessage.NOT_PERMISSION);
@@ -73,6 +76,7 @@ public ResponseDto<DeleteProductResponseDto> deleteProductResponseDto(String ema
     }
     return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
 }
+
 
 
 

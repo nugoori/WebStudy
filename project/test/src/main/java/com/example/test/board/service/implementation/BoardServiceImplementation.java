@@ -117,6 +117,7 @@ public class BoardServiceImplementation implements BoardService {
             likyRepository.deleteByBoardNumber(boardNumber);
 
             boardRepository.delete(boardEntity);
+            
             data = new DeleteBoardResponseDto(true);
 
         } catch (Exception exception) {

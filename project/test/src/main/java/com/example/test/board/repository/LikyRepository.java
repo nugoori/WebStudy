@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.test.board.entity.LikyEntity;
 import com.example.test.board.entity.primaryKey.LikyPk;
@@ -15,5 +16,6 @@ public interface LikyRepository extends JpaRepository<LikyEntity, LikyPk>{
 
     public LikyEntity findByEmailAndBoardNumber(String email, int boardNumber);
 
-    public LikyEntity deleteByBoardNumber(int boardNumber);
+    @Transactional
+    public void deleteByBoardNumber(int boardNumber);
 }
